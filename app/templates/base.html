@@ -1,0 +1,72 @@
+{% import 'macros.html' as macros %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Project Title</title>
+    <!-- Browser rendering at width of screen -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- STYLESHEETS -->
+    <link href="//netdna.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css" rel="stylesheet">
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:600|Oswald:700' rel='stylesheet'>
+    <link href="/static/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/static/css/bootstrap-theme.min.css" rel="stylesheet">
+    <link href="static/css/tooltipster.css" rel="stylesheet">
+    <link href="/static/css/main_new.css" rel="stylesheet"> <!-- my styles -->
+    <script src="https://code.jquery.com/jquery-1.12.1.min.js" integrity="sha256-I1nTg78tSrZev3kjvfdM5A5Ak/blglGzlaZANLPDl3I=" crossorigin="anonymous"></script>
+    <!-- For animation & scrollmagic; needs to go at top-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.18.0/TweenMax.min.js"></script>
+    <!-- should be replaced with minified version when development is finished -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.5/ScrollMagic.min.js"></script>
+    <!-- should be removed when development is finished -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.5/plugins/debug.addIndicators.min.js"></script>
+    {% block head %}
+    {% endblock %}
+</head>
+<body>
+    <!-- NAVBAR -->
+    <!-- These first wrappers (nav, div) lock our styled navbar onto the top
+    of the page in a centred fashion. Conversely, this object
+    is stretched full-page -->
+    <nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container">
+    <!-- This is what we work with for visuals and data -->
+    <br>
+    <nav class="navbar navbar-default">
+    <div class="container-fluid" id="navbarLeftRightFull">
+        {% include 'navbar_header.html' %}
+        {% include 'navbar_data.html' %}
+    </div></nav>
+    </div></nav>
+    <br><br>
+    <!-- MAIN BODY SECTION
+    We build flash msgs here; redder and content are blank -->
+    <div class="container"><div class="col-xs-12">
+        {% block flashes %}
+            {% for msg in get_flashed_messages() %}
+                <div class="alert alert-warning">
+                    <button type="button" class="close"
+                    data-dismiss="alert">&times;</button>
+                    {{ msg }}
+                </div>
+            {% endfor %}
+        {% endblock %}
+        <span class="redder">
+            {% block redder %}
+            {% endblock %}
+        </span>
+        {% block content %}
+        {% endblock %}
+    </div></div>
+    <!-- JAVASCRIPT -->
+    <!-- <script src="/static/js/moment.min.js"></script> -->
+    <!-- double curly moment.include_moment() double curly -->
+    <!-- <script src="/static/js/rangeslider.min.js"></script> -->
+    <!-- <script type="text/javascript" src="static/js/jquery.scrolly.js"></script>  -->
+    <!-- JAVASCRIPT, JQUERY ADD-INS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tooltipster/3.3.0/css/themes/tooltipster-light.min.css"></script>
+    <!-- <script src="static/js/jquery.tooltipster.min.js"></script> -->
+    <script src="/static/js/bootstrap.min.js"></script>
+    <script src="static/js/jasny-bootstrap.min.js"></script>
+</body>
+</html>

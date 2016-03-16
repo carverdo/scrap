@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+
+{% block redder %}
+{% endblock %}
+
+{% block content %}
+<div>
+<!-- <p align="right"> DOUBLE CURLY moment(ct, local=True).format('Do MMM YYYY, h:mm:ss a') DOUBLE CURLY</p>  -->
+</div>
+<!-- run parallax (for demo purpose) -->
+<section id="roper" class="full-screen">
+    <div id="pinned-trigger1"><div id="pinned-element1">
+        <br><br><br><br><br><br>
+        <p align="right">{{ct}}</p>
+        <div class="jumbotron" id="big-logo">
+            <h1>splash <small>Page.</small></h1></div>
+        <ul class="nav nav-pills nav-justified"><li role="presentation">
+            <a class="btn btn-default btn-block" href="signin">signIn</a>
+        </li></ul>
+        <br>
+        <a class="btn btn-default btn-block" href="contactus">
+            get in touch</a>
+    </div></div>
+</section>
+<!-- Filler to get the scrolling working right -->
+<section class="full-screen"></section>
+<script src="static/js/snips/llax.js"></script>
+{% endblock %}

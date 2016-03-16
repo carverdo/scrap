@@ -1,0 +1,87 @@
+<!-- HEADERS FOR NAVBAR -->
+{% macro buildLink(u_title, title) %}
+    <li><a href="{{ url_for(u_title) }}">{{ title }}</a></li>
+{% endmacro %}
+
+{% macro buildDropper(title) %}
+    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
+        aria-haspopup="true" aria-expanded="false">
+        {{title}}
+        <span class="caret"></span>
+    </a>
+{% endmacro %}
+
+
+
+<!-- STRUCTURE OF FORMS FOR DATA COLLECTION -->
+{% macro form_pres2(endpoint, form, panel_args, kwargs={}) %}
+    {% if endpoint == '' %}
+        <form action="" method="post">
+    {% else %}
+        <form action="{{ url_for(endpoint, **kwargs) }}" method="post">
+    {% endif %}
+    {{ form.csrf_token }}
+    {{ create_masterpanel2(form, **panel_args) }}
+    </form>
+{% endmacro %}
+
+<!-- LOOK AND FEEL OF THE PANEL (HOLDING THE FORM)-->
+{% macro create_masterpanel2(form, patex, tadata, wid=4, sched_rem=None,
+                             stripedata=None) %}
+<div class="col-xs-12 col-md-{{wid}}">
+    <div class="panel">
+        <div class="panel-heading btn-success"><h2 style="font-size:18px">
+            {{ patex }} </h2></div>
+        <div class="panel-body" align="center">
+            {% include tadata %}
+        </div>
+    </div>
+</div>
+{% endmacro %}
+
+<!-- PRESENTATION OF INDIVIDUAL FORM ROWS INSIDE PANEL -->
+{% macro row_pres(i_class, fn, placeholder) %}
+<div class="form-group">
+    <div class="input-group">
+        <span class="input-group-addon"><i class="{{i_class}}"></i></span>
+        <input class="form-control" {{ fn(placeholder=placeholder) }}
+    </div>
+</div>
+{% endmacro %}
+
+<!-- PRESENTATION OF INDIVIDUAL FORM ROWS INSIDE PANEL PART 2-->
+{% macro row_pres_text(tx, fn, placeholder) %}
+<div class="form-group">
+    <div class="input-group">
+        <span class="input-group-addon" id="basic-addon1">{{ tx }}</span>
+        <input class="form-control" {{ fn(placeholder=placeholder) }}
+    </div>
+</div>
+{% endmacro %}
+
+
+<!-- PRESENTATION OF INDIVIDUAL TABLE ROWS -->
+{% macro table_row(obj) %}
+<div class="table-responsive" id="scroller">
+    <table class="table table-hover table-condensed">
+        <tbody data-link="row" class="rowlink">
+            <tr>
+                <td> id </td>
+                <td> function </td>
+                <td> next_run_time </td>
+                <td> args </td>
+                <td> kwargs </td>
+            </tr>
+            {% for ro in obj %}
+                <tr class="prof_row_style">
+                    <td> {{ro.id}} </td>
+                    <td> {{ro.name}} </td>
+                    <td> {{ro.next_run_time}} </td>
+                    <td> {{ro.args}} </td>
+                    <td> {{ro.kwargs}} </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endmacro %}

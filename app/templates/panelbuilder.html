@@ -1,0 +1,11 @@
+{% import 'macros.html' as macros %}
+{% extends "base.html" %}
+
+{% block redder %}
+    {% include 'input_errors.html' %}
+{% endblock %}
+
+{% block content %}
+  {{ macros.form_pres2(endpoint, form, panel_args, kwargs) }}
+{% endblock %}
+
