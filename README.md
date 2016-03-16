@@ -60,22 +60,27 @@ so we can play with scripts after running.
 set as source directory.
 Create Git repository.
 
-# Github (deploy part 1)
-## Gitignores
+# Gitbash / Gitignores
 Check all of your gitignores. 
 For the primary one (beneath source) use the intellij default 
 and then tailor to, among other things, ignore the venv. 
 This will keep the github sync as small as possible. 
 (Place other gitignores under subdirectories as required.)  
-
 Make sure there are no stray files / folders, even .pycs. Clear the logs.
-
 Open up Gitbash, cd to the right directory.
-git init (might reinitialise existing - no problem);
-git add -A;
-git commit -m"Comment";
+`git init` (might reinitialise existing - no problem);
+`git add -A`;
+`git commit -m"Comment"`;
 
-
+# Github (deploy part 2)
+Now you have version control up and running. 
+Let's back that up externally.
+`git remote add origin http://github.com/yourgithubaccount/githubproject`
+We've added the idea of linkage (a remote origin) but we haven't actually
+created anything. 
+In your github account make sure that `githubproject` exists.
+Push your local to the origin (master branch) -
+`git push origin master` (you'll need to sign in to github)
 
 # Heroku (deploy part 2)
 Make sure procfile is beneath src root - specific instructions to heroku. 
