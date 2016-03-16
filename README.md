@@ -2,7 +2,8 @@
 Ribcage is a fast and frugal baseline to quickly get your project up and 
 running.
 
-0. Create local version of project by pulling from github.
+0. Create local version of project by creating a local empty project
+(of whatever name) and then linking to (see below) and pulling from github.
 1. Create your own `venv` directory (won't be in github) directly under
 src root  and import package requirements. At a minimum you will need Flask, 
 Flask-Login, Flask-DebugToolbar, Flask-SQLalchemy, Flask-Script, 
@@ -12,13 +13,14 @@ Flask-Migrate, Flask-WTF, wtforms, psycopg2, requests.
 4. In one_offs, follow db instructions under `db_create_migrate.py` OR `manager.py` 
 and `db_init_data.py` (modify this to your own setup; you'll need to move 
 to/from one_offs to run); to establish database model in pgadmin;
-5. You will need to create a number of local environment variables 
+Make sure your one_off .gitignore is not mangled by this to and fro.
+5. You may need to create a number of local environment variables 
 in order for the config files to work properly.
 6. Run `run`.
 
 Now you're free to build out your project on top of this skeleton.
 
-## Directories/Files outside of app
+## Explanations (directories/Files outside of app)
 `logs, migrations, tests` self-explanatory.
 `one_offs` e.g. for stuff used in set up only.
 `config` and variants primarily for DB setting;
@@ -27,7 +29,7 @@ Now you're free to build out your project on top of this skeleton.
 `requirements.txt`: keep up to date; useful for moving to production.
 NB. Will always be a longer than you suspect (dependencies).
 
-## app
+## Explanations (app)
 there are three main blueprint areas: `log_auth`, `log_records`, and 
 `proj` each of which gets paired with the app as part of `create_app`.
 

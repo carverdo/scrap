@@ -16,6 +16,7 @@ gen
 # DIRECTORIES
 venv
 del_area
+migrations
 
 # SUBDIRECTORIES
 

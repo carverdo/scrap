@@ -1,7 +1,7 @@
 """
 Part 1 of the config job - configuring the innards of the app.
 """
-#todo KEYS OUT!!!!!
+
 __author__ = 'donal'
 __project__ = 'ribcage'
 
