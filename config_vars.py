@@ -11,7 +11,7 @@ import re
 # ====================
 # POPULATE POSTGRES_KEYS AND #1-3 BLANKS AS REQUIRED
 # ====================
-DBNAME = 'ribcage'
+DBNAME = 'funding_bible'
 PK = os.environ.get('POSTGRES_KEYS', 'BLANK BLANK').split()
 # links db_models.py and forms.py -
 MAX_COL_WIDTHS = 30

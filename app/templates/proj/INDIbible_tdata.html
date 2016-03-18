@@ -1,0 +1,34 @@
+{% import 'macros.html' as macros %}
+<ul class="nav nav-pills nav-justified">
+    <li role="presentation">
+        <a class="btn btn-default btn-block"
+            href="{{ url_for('proj.bible') }}">
+            Back to All Names
+        </a>
+    </li>
+</ul>
+&nbsp;
+{{ macros.row_pres_text(form.tag.name, form.tag)}}
+{{ macros.row_pres_text(form.corp.name, form.corp)}}
+{{ macros.row_pres_text(form.url.name, form.url)}}
+{{ macros.row_pres_text(form.city.name, form.city)}}
+{{ macros.row_pres_text(form.country.name, form.country)}}
+
+{{ macros.row_pres_text(form.investmentPhase.name, form.investmentPhase)}}
+{{ macros.row_pres_text(form.geoFocus.name, form.geoFocus)}}
+{{ macros.row_pres_text(form.sectorFocus.name, form.sectorFocus)}}
+{{ macros.row_pres_text(form.minInv.name, form.minInv)}}
+{{ macros.row_pres_text(form.maxInv.name, form.maxInv)}}
+{{ macros.row_pres_text(form.dealCount.name, form.dealCount)}}
+{{ macros.row_pres_text(form.aum.name, form.aum)}}
+
+{{ macros.row_pres_text2(form.dealList.name, form.dealList.default)}}
+{{ macros.row_pres_text(form.established.name, form.established)}}
+{{ macros.row_pres_text2(form.connectedNames.name, form.connectedNames.default)}}
+
+{{ macros.row_pres_text2(form.description.name, form.description.default)}}
+{{ macros.row_pres_text(form.description.name, form.description)}}
+
+<button type="submit" class="btn btn-primary btn-block">
+    Submit all Changes
+</button>

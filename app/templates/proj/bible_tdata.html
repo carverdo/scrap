@@ -1,0 +1,38 @@
+<div class="table-responsive">
+    <table class="table table-hover table-condensed">
+        <thead><tr>
+            <th id="clipped"> Tag </th>
+            <th id="clipped"> Entity </th>
+            <th id="clipped"> City | Country </th>
+            <th id="clipped"> InvestmentPhase </th>
+            <th id="clipped"> GeoFocus </th>
+            <th id="clipped"> SectorFocus </th>
+            <th id="clipped"> MinInv | MaxInv </th>
+            <th id="clipped"> DealCount | AUM | Established </th>
+            <th id="clipped"> Description </th>
+            <th id="clipped"> ConnectedNames </th>
+            <th id="clipped"> DealList </th>
+            <th id="clipped"> y2016 </th>
+            <th id="clipped"> y2015 </th>
+        </tr></thead>
+        <tbody data-link="row" class="rowlink">
+        {% for ro in form %}
+            <tr class="prof_row_style">
+                <td id="clipped"> <a href="?m={{ro.corp}}"></a> {{ ro.tag }} </td>
+                <td id="clipped"> <a target="_blank" href="{{ ro.url }}">{{ ro.corp }} </td>
+                <td id="clipped"> {{ ro.city }} | {{ ro.country }} </td>
+                <td id="clipped"> {{ ro.investmentPhase }} </td>
+                <td id="clipped"> {{ ro.geoFocus }} </td>
+                <td id="clipped"> {{ ro.sectorFocus }} </td>
+                <td id="clipped"> {{ ro.minInv }} | {{ ro.maxInv }} </td>
+                <td id="clipped"> {{ ro.dealCount }} | {{ ro.aum }} | {{ ro.established }} </td>
+                <td id="clipped"> {{ ro.description }} </td>
+                <td id="clipped"> {{ ro.connectedNames }} </td>
+                <td id="clipped"> {{ ro.dealList }} </td>
+                <td id="clipped"> {{ ro.y2016 }} </td>
+                <td id="clipped"> {{ ro.y2015 }} </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+</div>

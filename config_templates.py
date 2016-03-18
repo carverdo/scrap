@@ -13,7 +13,8 @@ class TemplateParameters(object):
         profile = 'Change your Password',
         signin = 'Log in to begin...',
         signup = 'Sign up to get started',
-        logs = 'Your Logged Records'
+        logs = 'Your Logged Records',
+        bible = 'Our Dataset'
         # addtasks = 'Build your schedule',
         # adm_bucketmap = 'Allow bucket access: connect DB to S3',
         # balldata = 'Movement Data',
@@ -27,7 +28,9 @@ class TemplateParameters(object):
         profile = 'log_auth/profile_tdata.html',
         signin = 'log_auth/signin_tdata.html',
         signup = 'log_auth/signup_tdata.html',
-        logs = 'log_records/log_records_tdata.html'
+        logs = 'log_records/log_records_tdata.html',
+        bible = 'proj/bible_tdata.html',
+        INDIbible = 'proj/INDIbible_tdata.html'
         # addtasks = 'xx_timer_tdata.html',
         # adm_bucketmap = 'adm_bucketmap_tdata.html',
         # balldata = 'xx_device_tracker_tdata.html',

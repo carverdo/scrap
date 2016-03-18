@@ -162,6 +162,52 @@ class Visit(CRUDMixin, db.Model):
             .format(self.ip_address, self.city, self.date)
 
 
+# ==============================
+# PROJECT SPECIFIC STRUCTURE
+# ==============================
+class BibleBlock(CRUDMixin, db.Model):
+    id = Column(Integer, primary_key=True)
+    tag = Column(String)
+    corp = Column(String)
+    url = Column(String)
+    city = Column(String)
+    country = Column(String)
+    investmentPhase = Column(String)
+    geoFocus = Column(String)
+    sectorFocus = Column(String)
+    minInv = Column(String)
+    maxInv = Column(String)
+    dealCount = Column(String)
+    aum = Column(String)
+    dealList = Column(String)
+    established = Column(String)
+    connectedNames = Column(String)
+    description = Column(String)
+    personalNotes = Column(String)
+    donalRank = Column(String)
+    readUrl = Column(String)
+    y2016 = Column(String)
+    y2015 = Column(String)
+    y2014 = Column(String)
+    y2013 = Column(String)
+    y2012 = Column(String)
+    y2011 = Column(String)
+    y2010 = Column(String)
+    y2009  = Column(String)
+    y2008 = Column(String)
+    y2007 = Column(String)
+    multitag = Column(String)
+    originalOrder = Column(String)
+
+    def __init__(self, **kwargs):
+        for key, value in kwargs.items():
+            setattr(self, key, value)
+
+    def __repr__(self):
+        return '<{} in {} on {}>'\
+            .format(self.tag, self.corp, self.url)
+
+
 # flask-login needs this definition
 @login_manager.user_loader
 def load_user(user_id):
