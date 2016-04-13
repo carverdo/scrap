@@ -17,6 +17,7 @@ gen
 venv
 del_area
 migrations
+alchemydumps
 
 # SUBDIRECTORIES
 

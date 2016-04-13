@@ -63,3 +63,4 @@ AWS_KEYS = {
 if __name__ == '__main__':
     print PK
     print AWS_KEYS
+    print RIBCAGE_KEY01

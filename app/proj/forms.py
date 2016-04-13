@@ -1,16 +1,30 @@
 __author__ = 'donal'
 __project__ = 'funding_bible'
+#todo add field validations
 
 from flask.ext.wtf import Form
-from wtforms import StringField, TextAreaField, validators
-# PasswordField, BooleanField, SelectField, validators, IntegerField
+from wtforms import StringField, TextAreaField, IntegerField, validators
+# PasswordField, BooleanField, SelectField,
 from config_vars import MAX_COL_WIDTHS, MIN_PASS_LEN
+
+FALSE_RANK = 10000
+INSTANTI_RANK = 5000
+
 
 class BibleFo(Form):
     """
-    Inherit (from signup), modify (including default in model),
-    and auto-present the pre-populated forms data.
+    Is used in for two data tables (private and public)
     """
+    # personal data
+    myNotes = StringField("myNotes")
+    myRank = IntegerField(
+            "myRank",
+            [validators.InputRequired('You need to enter a number into myRank'),
+             validators.NumberRange(min=0, max=FALSE_RANK)],
+            default=INSTANTI_RANK
+    )
+    readUrl = StringField("readUrl")
+    # basics
     tag = StringField("tag")
     corp = StringField("corp")
     url = StringField("url")

@@ -3,6 +3,7 @@ We import our empty db and write our model changes to it.
 
 NOTE: scheduler creates an additional table not captured in this model.
 """
+#todo Get rid of multitag originalOrder...
 __author__ = 'donal'
 __project__ = 'ribcage'
 from datetime import datetime
@@ -74,8 +75,11 @@ class Member(UserMixin, CRUDMixin, db.Model):
     first_log = Column(DateTime(), default=datetime.utcnow)
     last_log = Column(DateTime(), default=datetime.utcnow)
     logins = Column(Integer)
+    # relationships
     ips = relationship('Visit', backref='member',
                        cascade="all, delete-orphan", passive_deletes=True)
+    own_notes = relationship('PersonalNotes', backref='member',
+                             cascade="all, delete-orphan", passive_deletes=True)
 
     def __init__(self, firstname, surname, email, password,
                  adminr=ADMIN_USER, active=INITIALLY_ACTIVE,
@@ -107,9 +111,11 @@ class Member(UserMixin, CRUDMixin, db.Model):
     def is_active(self):
         """Extra protection: we can determine/toggle"""
         return self.active
+    """
     def is_anonymous(self):
-        """False: not allowed"""
+        ###False: not allowed###
         return False
+    """
     def get_id(self):
         return unicode(self.id)
     # ===========================
@@ -131,7 +137,6 @@ class Member(UserMixin, CRUDMixin, db.Model):
             lg.logger.info('failed try')
             return False
         if data.get('confirm') != self.id:
-            lg.logger.info('failed confirm: {} {}'.format(data.get('confirm'), self.id))
             return False
         self.confirmed = True
         self.save(self)
@@ -166,10 +171,15 @@ class Visit(CRUDMixin, db.Model):
 # PROJECT SPECIFIC STRUCTURE
 # ==============================
 class BibleBlock(CRUDMixin, db.Model):
+    """
+    Our primary datastructure.
+    Links to the oneoff excel file from which it is generated.
+    """
+    __tablename__ = 'bibleblock'
     id = Column(Integer, primary_key=True)
-    tag = Column(String)
-    corp = Column(String)
-    url = Column(String)
+    tag = Column(String, nullable=False)
+    corp = Column(String, nullable=False)  ## unique?
+    url = Column(String)  ## unique?
     city = Column(String)
     country = Column(String)
     investmentPhase = Column(String)
@@ -177,15 +187,15 @@ class BibleBlock(CRUDMixin, db.Model):
     sectorFocus = Column(String)
     minInv = Column(String)
     maxInv = Column(String)
-    dealCount = Column(String)
-    aum = Column(String)
+    dealCount = Column(String(MAX_COL_WIDTHS))
+    aum = Column(String(MAX_COL_WIDTHS))
     dealList = Column(String)
-    established = Column(String)
+    established = Column(String(MAX_COL_WIDTHS))
     connectedNames = Column(String)
     description = Column(String)
-    personalNotes = Column(String)
-    donalRank = Column(String)
-    readUrl = Column(String)
+    # personalNotes = Column(String)  ## del
+    # donalRank = Column(String)  ## del
+    # readUrl = Column(String)  ## del
     y2016 = Column(String)
     y2015 = Column(String)
     y2014 = Column(String)
@@ -196,24 +206,52 @@ class BibleBlock(CRUDMixin, db.Model):
     y2009  = Column(String)
     y2008 = Column(String)
     y2007 = Column(String)
-    multitag = Column(String)
-    originalOrder = Column(String)
+    # multitag = Column(String)  ## del
+    # originalOrder = Column(String)  ## del
+    # relationships
+    personal_notes = relationship('PersonalNotes', backref='bibleData',
+                                  cascade="all, delete-orphan",
+                                  passive_deletes=True)
 
     def __init__(self, **kwargs):
         for key, value in kwargs.items():
             setattr(self, key, value)
 
     def __repr__(self):
-        return '<{} in {} on {}>'\
+        return '<{}, {}, {}>'\
             .format(self.tag, self.corp, self.url)
 
 
+class PersonalNotes(CRUDMixin, db.Model):
+    """
+    Every member can make their own notes.
+    """
+    __tablename__ = 'personalnotes'
+    id = Column(Integer, primary_key=True)
+    member_id = Column(Integer, ForeignKey('member.id', ondelete='CASCADE'))
+    bblock_id = Column(Integer, ForeignKey('bibleblock.id', ondelete='CASCADE'))
+    myNotes = Column(String)
+    myRank = Column(Integer)
+    readUrl = Column(String)
+
+    def __init__(self, **kwargs):
+        for key, value in kwargs.items():
+            setattr(self, key, value)
+
+    def __repr__(self):
+        return '<{}, {}, {}>'\
+            .format(self.member_id, self.myNotes, self.myRank)
+
+
+# ==============================
 # flask-login needs this definition
+# ==============================
 @login_manager.user_loader
 def load_user(user_id):
     return Member.query.get(int(user_id))
 
 
+# ==============================
 if __name__ == '__main__':
     mem = Member('pat', 'brok', 'PB', 'fish', 0)
     print mem

@@ -7,7 +7,18 @@
         </a>
     </li>
 </ul>
-&nbsp;
+<button type="submit" class="btn btn-primary btn-block">
+    Submit all Changes</button>
+<br>
+<div class="panel-heading btn-success">
+<h1>My Personal Notes</h1>
+{{ macros.row_pres_text(form.myNotes.name, form.myNotes)}}
+{{ macros.row_pres_text(form.myRank.name, form.myRank)}}
+{{ macros.row_pres_text(form.readUrl.name, form.readUrl)}}
+</div>
+<div class="res_container_blue">
+<br>
+<h1>Shared Data</h1>
 {{ macros.row_pres_text(form.tag.name, form.tag)}}
 {{ macros.row_pres_text(form.corp.name, form.corp)}}
 {{ macros.row_pres_text(form.url.name, form.url)}}
@@ -27,8 +38,6 @@
 {{ macros.row_pres_text2(form.connectedNames.name, form.connectedNames.default)}}
 
 {{ macros.row_pres_text2(form.description.name, form.description.default)}}
-{{ macros.row_pres_text(form.description.name, form.description)}}
-
+</div>
 <button type="submit" class="btn btn-primary btn-block">
-    Submit all Changes
-</button>
+    Submit all Changes</button>
